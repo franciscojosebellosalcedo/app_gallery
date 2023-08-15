@@ -1,0 +1,38 @@
+.icon__view{
+    font-size: 35px;
+    color: blue;
+}
+.icon__back {
+  cursor: pointer;
+  display: block;
+  margin-top: 20px;
+}
+.form__album {
+  width: 50%;
+  margin: 50px auto;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  box-shadow: var(--box-shadow);
+  border-radius: 8px;
+  gap: 20px;
+  padding: 40px;
+}
+.input__register {
+  border: 0.5px solid black;
+  border-radius: 8px;
+  height: 40px;
+  padding-left: 5px;
+  width: 100%;
+  resize: none;
+}
+.btn__create__album__register {
+  padding: 8px 10px;
+  font-size: 17px;
+  background-color: rgba(0, 0, 255, 0.749);
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+  width: 30%;
+  display: block;
+}

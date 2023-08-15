@@ -1,0 +1,14 @@
+.alert__app{
+    position: absolute;
+    left: 30px;
+    bottom: 30px;
+    border-radius: 8px;
+    background-color: white;
+    box-shadow: var(--box-shadow);
+    padding: 10px;
+}
+.icon__alert{
+    position: absolute;
+    top: 0px;
+    right: 0px;
+}

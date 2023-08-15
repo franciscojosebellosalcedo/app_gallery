@@ -1,0 +1,12 @@
+.album__title{
+    color:var(--color-title) ;
+}
+.btn__create__album{
+    margin-top: 25px;
+    padding: 8px 10px;
+    font-size: 17px;
+    background-color: rgba(0, 0, 255, 0.749);
+    color: white;
+    border-radius:8px ;
+    cursor: pointer;
+}
