@@ -5,7 +5,7 @@ const Nav = () => {
   return (
     <header className="home__header">
     <nav className="home__nav">
-      <NavLink to="/" className="home__logo">
+      <NavLink to="/app_gallery" className="home__logo">
         <i class="uil uil-images icon"></i>App Gallery
       </NavLink>
       <ul className="home__nav__list">
