@@ -13,7 +13,7 @@ import AlertContextProvider from "./contexts/AlertContextProvider.jsx";
 function App() {
   const router = createBrowserRouter([
     {
-      path: "/app_gallery",
+      path: "/",
       element: <Home />,
     },
     {
