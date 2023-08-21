@@ -2,6 +2,19 @@ const urlbase = "http://localhost:4000/api/";
 
 
 
+export const createAlbumRequest = async (body,token) => {
+  const response=await fetch(urlbase+"create-album", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "Access-Control-Allow-Origin": "*",
+      "Authorization":`bearer ${token}`
+    },
+    body:{...body}
+  });
+  return await response.json();
+};
+
 export const refressTokenRequest = async (token) => {
   const response=await fetch(urlbase+"refress-token", {
     method: "GET",

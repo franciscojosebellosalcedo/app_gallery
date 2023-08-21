@@ -1,14 +1,27 @@
 .alert__app{
     position: absolute;
-    left: 30px;
-    bottom: 30px;
+    bottom: 35px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    height: 60px;
+    width:220px;
     border-radius: 8px;
-    background-color: white;
+    background-color: rgb(225, 224, 224);
     box-shadow: var(--box-shadow);
     padding: 10px;
+    left: -100%;
+    transition: all 1s;
+}
+.alert__paragraph{
+    font-size: 14px;
 }
 .icon__alert{
     position: absolute;
-    top: 0px;
-    right: 0px;
+    font-size: 25px;
+    top: 0;
+    right: 0;
+    color: rgba(0, 0, 255, 0.782);
+    cursor: pointer;
 }

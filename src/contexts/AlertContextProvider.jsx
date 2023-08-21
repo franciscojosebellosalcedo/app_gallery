@@ -2,7 +2,7 @@ import React, { useContext, createContext, useState } from "react";
 
 export const ContextAlert = createContext();
 const AlertContextProvider = ({ children }) => {
-  const [alert, setAlert] = useState({ message: "dedededed", type: "" });
+  const [alert, setAlert] = useState({ message: "Complete el formulario", type: "error" });
   const [isOpen,setIsOpen]=useState(true);
   return (
     <>

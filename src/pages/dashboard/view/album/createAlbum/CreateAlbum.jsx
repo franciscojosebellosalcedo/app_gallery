@@ -1,7 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import "./CreateAlbum.css";
 
-const CreateAlbum = () => {
+const CreateAlbum = (props) => {
+  const [newAlbum,setNewAlbum]=useState({
+    name:"",
+    description:""
+  });
+  
+
   return (
     <div className="create__register create__album">
       <figure className="figure__icon__back container__icon">

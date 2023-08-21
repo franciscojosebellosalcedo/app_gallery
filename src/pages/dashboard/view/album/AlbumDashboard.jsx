@@ -35,15 +35,14 @@ const AlbumDashboard = () => {
       ) : (
         ""
       )}
-
       {views.listAlbum === true ? (
         <ListAlbums />
       ) : views.createAlbum === true ? (
-        <CreateAlbum view={views} setViews={setViews} />
+        <CreateAlbum views={views} setViews={setViews} />
       ) : views.editAlbum === true ? (
-        <EditAlbum view={views} setViews={setViews} />
+        <EditAlbum views={views} setViews={setViews} />
       ) : views.deleteAlbum === true ? (
-        <DeleteAlbum view={views} setViews={setViews} />
+        <DeleteAlbum views={views} setViews={setViews} />
       ) : (
         ""
       )}

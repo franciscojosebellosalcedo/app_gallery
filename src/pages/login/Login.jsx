@@ -25,6 +25,7 @@ const Login = () => {
         setAlert({ type: 0, message: "Debes completar el formulario." });
       } else {
         const responseRequest = await loginRequest(credencials);
+        console.log(responseRequest);
         if (responseRequest.response === false) {
           setAlert({ type: 0, message: responseRequest.message });
         } else {

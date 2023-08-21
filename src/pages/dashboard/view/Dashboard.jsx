@@ -90,14 +90,14 @@ const Dashboard = () => {
     });
   };
 
-  // useEffect(() => {
-  //   getCurrentTime();
+  useEffect(() => {
+    getCurrentTime();
 
-  //   setInterval(() => {
-  //     getCurrentTime();
-  //   }, 1000);
+    setInterval(() => {
+      getCurrentTime();
+    }, 1000);
 
-  // }, []);
+  }, []);
 
 
   return (
