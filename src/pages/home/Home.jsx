@@ -5,15 +5,13 @@ import { useNavigate } from "react-router-dom";
 import Loader from "../../loader/Loader";
 
 const Home = () => {
-  const [isLoader, setIsLoader] = useState(true);
+  const [isLoader, setIsLoader] = useState(false);
   const valuesContextAuth = useContextAuth();
   const navigate = useNavigate();
 
   useEffect(() => {
     if (valuesContextAuth.isAuthenticated === true) {
       navigate("/dashboard");
-      setIsLoader(false);
-    }else{
       setIsLoader(false);
     }
   });
