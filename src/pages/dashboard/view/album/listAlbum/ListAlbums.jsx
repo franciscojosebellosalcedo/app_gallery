@@ -7,7 +7,6 @@ const ListAlbums = () => {
   const [viewButtonsOption, setViewButtonsOption] = useState(false);
 
   const {albums} = useContexAlbums();
-  console.log(albums)
 
   const handlOptionAlbum = (index) => {
     const list = listOptions;
