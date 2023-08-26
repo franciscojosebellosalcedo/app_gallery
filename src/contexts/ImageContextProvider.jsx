@@ -72,6 +72,7 @@ const ImageContextProvider = ({ children }) => {
       <ContextImagens.Provider value={{ imagens, setImagens }}>
         {children}
       </ContextImagens.Provider>
+      <h2>welcome</h2>
     </>
   );
 };
