@@ -2,9 +2,6 @@ import React, { useContext, createContext, useState } from "react";
 
 export const ContextImagens = createContext();
 const ImageContextProvider = ({ children }) => {
-  
-
-  
   const [imagens, setImagens] = useState([
     {
       album:"nombre delalbum",
