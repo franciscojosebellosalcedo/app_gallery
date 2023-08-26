@@ -67,11 +67,9 @@ const ImageContextProvider = ({ children }) => {
   ]);
   return (
     <>
-    <div>lo que sea</div>
       <ContextImagens.Provider value={{ imagens, setImagens }}>
         {children}
       </ContextImagens.Provider>
-      <h2>welcome</h2>
     </>
   );
 };
