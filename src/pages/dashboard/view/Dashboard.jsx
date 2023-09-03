@@ -91,7 +91,7 @@ const Dashboard = () => {
       getCurrentTime();
     }, 1000);
 
-  });
+  },[]);
 
 
   return (
