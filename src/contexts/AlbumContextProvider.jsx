@@ -1,33 +1,78 @@
 import React, { createContext, useContext, useState } from "react";
+import { useEffect } from "react";
+import { getAllAlbumByIdUserRequest } from "../api/api";
+import { useContextAuth } from "./AuthContextProvider";
 
 export const ContextAlbum = createContext();
 
 const AlbumContextProvider = ({ children }) => {
-  const [albums, setAlbums] = useState([
-    // { id: 0, name: "hola", description: "hola", date: "1:1:1" },
-    // { id: 1, name: "hola", description: "hola", date: "1:1:1" },
-    // { id: 2, name: "hola", description: "hola", date: "1:1:1" },
-    // { id: 3, name: "hola", description: "hola", date: "1:1:1" },
-    // { id: 4, name: "hola", description: "hola", date: "1:1:1" },
-    // { id: 5, name: "hola", description: "hola", date: "1:1:1" },
-    // { id: 6, name: "hola", description: "hola", date: "1:1:1" },
-    // { id: 7, name: "hola", description: "hola", date: "1:1:1" },
-    // { id: 8, name: "hola", description: "hola", date: "1:1:1" },
-    // { id: 9, name: "hola", description: "hola", date: "1:1:1" },
-    // { id: 10, name: "hola", description: "hola", date: "1:1:1" },
-    // { id: 11, name: "hola", description: "hola", date: "1:1:1" },
-    // { id: 12, name: "hola", description: "hola", date: "1:1:1" },
-    // { id: 13, name: "hola", description: "hola", date: "1:1:1" },
-    // { id: 14, name: "hola", description: "hola", date: "1:1:1" },
-  ]);
+  const { getAccessToken, getIdUser } = useContextAuth();
+  const [albums, setAlbums] = useState([]);
+  const [isOpenSelectAlbums, setIsOpenSelectAlbums] = useState(false);
+  const [isSelectedAllAlbums, setIsSelectedAllAlbums] = useState(false);
+  const [listOptions, setListOptions] = useState([]);
+
+  const closeAllOptions = () => {
+    const list = listOptions;
+    for (let i = 0; i < list.length; i++) {
+      const option = list[i];
+      option.isOpen = false;
+    }
+    setListOptions([...list]);
+  };
+
+  const handlOptionAlbum = (index) => {
+    const list = listOptions;
+    if (list[index].isOpen === true) {
+      list[index].isOpen = false;
+      setListOptions([...list]);
+    } else {
+      for (let i = 0; i < list.length; i++) {
+        const option = list[i];
+        option.isOpen = false;
+      }
+      if (list[index]) {
+        list[index].isOpen = true;
+      }
+      setListOptions([...list]);
+    }
+  };
+
+  useEffect(() => {
+    const getAllAlbumByIdUser = async () => {
+      const responseGetAllAlbumByIdUser = await getAllAlbumByIdUserRequest(
+        getIdUser(),
+        getAccessToken()
+      );
+      if (responseGetAllAlbumByIdUser.response === false) {
+        setAlbums([]);
+      } else {
+        setAlbums([...responseGetAllAlbumByIdUser.data]);
+      }
+    };
+    getAllAlbumByIdUser();
+  }, []);
   return (
     <>
-      <ContextAlbum.Provider value={{ albums, setAlbums }}>
+      <ContextAlbum.Provider
+        value={{
+          albums,
+          setAlbums,
+          isOpenSelectAlbums,
+          setIsOpenSelectAlbums,
+          isSelectedAllAlbums,
+          setIsSelectedAllAlbums,
+          listOptions,
+          setListOptions,
+          closeAllOptions,
+          handlOptionAlbum
+        }}
+      >
         {children}
       </ContextAlbum.Provider>
     </>
   );
 };
-export const useContexAlbums=()=>useContext(ContextAlbum);
+export const useContexAlbums = () => useContext(ContextAlbum);
 
 export default AlbumContextProvider;

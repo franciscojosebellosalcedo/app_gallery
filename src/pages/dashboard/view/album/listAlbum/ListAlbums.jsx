@@ -1,38 +1,15 @@
 import React, { useEffect, useState } from "react";
 import "./listAlbum.css";
+import { format} from "timeago.js";
 import { useContexAlbums } from "../../../../../contexts/AlbumContextProvider";
 
 const ListAlbums = () => {
-  const [listOptions, setListOptions] = useState([]);
-  const [viewButtonsOption, setViewButtonsOption] = useState(false);
+  const [listAlbums,setListAlbums]=useState([]);
+  const { albums,isOpenSelectAlbums,setIsOpenSelectAlbums,listOptions, setListOptions ,handlOptionAlbum,isSelectedAllAlbums, setIsSelectedAllAlbums} = useContexAlbums();
 
-  const {albums} = useContexAlbums();
-
-  const handlOptionAlbum = (index) => {
-    const list = listOptions;
-    if (list[index].isOpen === true) {
-      list[index].isOpen = false;
-      setListOptions([...list]);
-    } else {
-      for (let i = 0; i < list.length; i++) {
-        const option = list[i];
-        option.isOpen = false;
-      }
-      if (list[index]) {
-        list[index].isOpen = true;
-      }
-      setListOptions([...list]);
-    }
-  };
-
-  const closeAllOptions = () => {
-    const list = listOptions;
-    for (let i = 0; i < list.length; i++) {
-      const option = list[i];
-      option.isOpen = false;
-    }
-    setListOptions([...list]);
-  };
+  useEffect(()=>{
+    setListAlbums([...albums]);
+  },[]);
 
   useEffect(() => {
     const arrayOption = [];
@@ -48,22 +25,29 @@ const ListAlbums = () => {
 
   return (
     <div className="conatiner__albums">
-      {albums.length>0?albums.map((album, i) => {
+      {listAlbums.length>0?listAlbums.map((album, i) => {
         return (
-          <div
+          <div key={i}
             className="album__item"
             style={{
               backgroundColor: listOptions[i]?.isOpen === true ? "#7148fc" : "",
               color: listOptions[i]?.isOpen === true ? "white" : "",
             }}
-          >
-            <h3 className="album__title">{album.name}</h3>
+            >
+            <label className="label__container" htmlFor={`input${i}__checkbox`} style={{pointerEvents:isOpenSelectAlbums===true? "unset":"",cursor:isOpenSelectAlbums===true? "pointer":""}} >
+
+            <h3 className="album__name" style={{color: listOptions[i]?.isOpen === true ? "white" : ""}}>{album.name}</h3>
             <p className="album__description">{album.description}</p>
-            <span className="album__date">{album.date}</span>
-            <figure
+            <span className="album__date">{format(album.date)}</span>
+            {
+              isOpenSelectAlbums===true? 
+                <input className="input__checkbox" type="checkbox" name="select__album" id={`input${i}__checkbox`}  /> 
+              : <figure
               onClick={() => handlOptionAlbum(i)}
               class="uil uil-ellipsis-v icon__menu__album"
-            >
+              >
+              
+
               {listOptions[i]?.isOpen === false ? (
                 ""
               ) : (
@@ -79,19 +63,16 @@ const ListAlbums = () => {
                   <div className="option__album">
                     <i class="uil uil-edit icon__option__album"></i>Editar
                   </div>
-                  <div className="option__album">
-                    <i class="uil uil-check icon__option__album"></i>Seleccionar
-                  </div>
-                  <div className="option__album">
-                    <i class="uil uil-check icon__option__album"></i>Seleccionar
-                    todo
-                  </div>
                 </div>
               )}
             </figure>
+            }
+            
+          </label>
           </div>
         );
-      }):<p style={{gridColumn:"1/4"}} >No tienes álbum creados</p>}
+      })
+      :<p style={{gridColumn:"1/4"}} >No tienes álbum creados</p>}
     </div>
   );
 };
