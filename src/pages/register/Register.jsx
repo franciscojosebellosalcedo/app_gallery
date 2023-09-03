@@ -113,6 +113,7 @@ const Register = () => {
           <div className="login__content__form">
             <div className="login__input__email box__form">
               <img
+              alt="imagen"
                 src={file}
                 style={{ objectFit: "cover" }}
                 className="image__previw"

@@ -13,10 +13,23 @@ const AlbumDashboard = () => {
     deleteAlbum: false,
     listAlbum: true,
   });
-  const { albums,isOpenSelectAlbums, setIsOpenSelectAlbums,isSelectedAllAlbums, setIsSelectedAllAlbums,closeAllOptions } = useContexAlbums();
+  const { albums,isOpenSelectAlbums, setIsOpenSelectAlbums, setIsSelectedAllAlbums,closeAllOptions ,albumsSelected,
+    setAlbumsSelected,} = useContexAlbums();
 
   const selectAllAlbums=()=>{
     setIsSelectedAllAlbums(true);
+    const listInputsCheckbox=[...document.querySelectorAll(".input__checkbox")];
+    for (let i = 0; i < listInputsCheckbox.length; i++) {
+      const input = listInputsCheckbox[i];
+      input.checked=true;
+    }
+    const allIdAlbumsSelected=[];
+    for (let i = 0; i < listInputsCheckbox.length; i++) {
+      const input = listInputsCheckbox[i];
+      allIdAlbumsSelected.push(input.value);
+    }
+    setAlbumsSelected([...allIdAlbumsSelected]);
+
   }
 
   const enableSelectAlbum=()=>{
@@ -25,6 +38,7 @@ const AlbumDashboard = () => {
   }
   const disableSelectAlbum=()=>{
     setIsOpenSelectAlbums(false);
+    setAlbumsSelected([])
   }
 
   return (
@@ -50,6 +64,15 @@ const AlbumDashboard = () => {
             </button>:""}
             { albums.length>0 ?
               <div className="conatiner__options__select">
+
+                {albumsSelected.length > 0 ? (
+                  <button onClick={()=>selectAllAlbums()} className="button__recicle__albums__all btn__option__select">
+                    Reciclar
+                  </button>
+                ) : (
+                  ""
+                )}
+
               {isOpenSelectAlbums === true ? (
                 <button onClick={()=>selectAllAlbums()} className="button__select__albums__all btn__option__select">
                   Sel. Todo
@@ -57,6 +80,7 @@ const AlbumDashboard = () => {
               ) : (
                 ""
               )}
+
 
               {isOpenSelectAlbums === true ? (
                 <button onClick={()=>disableSelectAlbum()} className="button__cancel__select btn__option__select">

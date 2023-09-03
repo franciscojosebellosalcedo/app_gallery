@@ -11,6 +11,7 @@ const AlbumContextProvider = ({ children }) => {
   const [isOpenSelectAlbums, setIsOpenSelectAlbums] = useState(false);
   const [isSelectedAllAlbums, setIsSelectedAllAlbums] = useState(false);
   const [listOptions, setListOptions] = useState([]);
+  const [albumsSelected, setAlbumsSelected] = useState([]);
 
   const closeAllOptions = () => {
     const list = listOptions;
@@ -38,6 +39,17 @@ const AlbumContextProvider = ({ children }) => {
     }
   };
 
+  const handlerSelectAlbum = (value) => {
+    const listIdAlbums = albumsSelected;
+    if (listIdAlbums.includes(value) === false) {
+      listIdAlbums.push(value);
+    } else {
+      const indexValueExist = listIdAlbums.indexOf(value);
+      listIdAlbums.splice(indexValueExist, 1);
+    }
+    setAlbumsSelected([...listIdAlbums]);
+  };
+
   useEffect(() => {
     const getAllAlbumByIdUser = async () => {
       const responseGetAllAlbumByIdUser = await getAllAlbumByIdUserRequest(
@@ -51,7 +63,7 @@ const AlbumContextProvider = ({ children }) => {
       }
     };
     getAllAlbumByIdUser();
-  }, []);
+  }, [getAccessToken,getIdUser]);
   return (
     <>
       <ContextAlbum.Provider
@@ -65,7 +77,10 @@ const AlbumContextProvider = ({ children }) => {
           listOptions,
           setListOptions,
           closeAllOptions,
-          handlOptionAlbum
+          handlOptionAlbum,
+          albumsSelected,
+          setAlbumsSelected,
+          handlerSelectAlbum
         }}
       >
         {children}

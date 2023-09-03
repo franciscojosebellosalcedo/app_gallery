@@ -8,7 +8,7 @@ import "./CreateAlbum.css";
 const CreateAlbum = (props) => {
   const { getAccessToken, getIdUser } = useContextAuth();
   const {albums,setAlbums}=useContexAlbums();
-  const { alert, setAlert, isOpen, setIsOpen, delayCloseAlert ,closeAlertBeforeLongTime} =
+  const { alert, setAlert, delayCloseAlert ,closeAlertBeforeLongTime} =
     useContextAlert();
   const [newAlbum, setNewAlbum] = useState({
     id_user: getIdUser(),

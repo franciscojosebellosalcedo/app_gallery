@@ -64,19 +64,13 @@ const Dashboard = () => {
     let monthYear=date.getMonth();
     if (hourTime < 10) {
       hourTime = `0${hourTime}`;
-    } else {
-      hourTime = hourTime;
-    }
+    } 
     if (minutesTime < 10) {
       minutesTime = `0${minutesTime}`;
-    } else {
-      minutesTime = minutesTime;
-    }
+    } 
     if (numberDayTime < 10) {
       numberDayTime = `0${numberDayTime}`;
-    } else {
-      numberDayTime = numberDayTime;
-    }
+    } 
     setTime({
       ...time,
       hour: hourTime,
@@ -97,7 +91,7 @@ const Dashboard = () => {
       getCurrentTime();
     }, 1000);
 
-  }, []);
+  });
 
 
   return (

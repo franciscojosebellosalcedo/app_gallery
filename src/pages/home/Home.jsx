@@ -13,15 +13,15 @@ const Home = () => {
     if (valuesContextAuth.isAuthenticated === true) {
       navigate("/dashboard");
       setIsLoader(false);
-    }else{
+    } else {
       setIsLoader(false);
     }
-  });
+  }, [valuesContextAuth.isAuthenticated, navigate]);
 
   return (
     <div className="home section__home">
       {isLoader === true ? (
-        <Loader/>
+        <Loader />
       ) : (
         <>
           <Nav />
@@ -37,10 +37,10 @@ const Home = () => {
               </p>
             </div>
             <img
+              alt="imagen"
               draggable={false}
               className="container__right"
               src={require("../../assets/imgs/img-home-2.png")}
-              alt="image"
             />
           </div>
         </>

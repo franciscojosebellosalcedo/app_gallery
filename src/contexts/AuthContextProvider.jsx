@@ -55,7 +55,7 @@ const AuthContextProvider = ({ children }) => {
       checkAuth();
     };
     refressToken();
-  }, []);
+  });
 
   return (
     <ContextAuth.Provider

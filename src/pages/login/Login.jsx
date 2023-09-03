@@ -98,10 +98,10 @@ const Login = () => {
                 placeholder="Ingrese su contraseña"
               />
             </div>
-            <a className="login__forgot__password" href="#">
+            <a className="login__forgot__password" href="hola">
               ¿Olvidaste tu contraseña?
             </a>
-            <a className="login__forgot__password" href="#">
+            <a className="login__forgot__password" href="hola">
               ¿Confirmaste tu cuenta?
             </a>
             <button onClick={(e) => login(e)} className="login__btn__init">

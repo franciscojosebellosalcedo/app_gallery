@@ -5,7 +5,6 @@ import { confirmAccotonUserRequest } from '../../api/api';
 const ConfirmAccontUser = () => {
   const [alert,setAlert]=useState(null);
   const params=useParams();
-  console.log(params.token)
 
   useEffect(()=>{
     const confirmAccontUser=async ()=>{
@@ -17,7 +16,7 @@ const ConfirmAccontUser = () => {
       }
     }
     confirmAccontUser();
-  },[]);
+  },[params.token]);
 
 
   return (
