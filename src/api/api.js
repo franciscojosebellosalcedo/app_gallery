@@ -2,6 +2,18 @@ const urlbase = "http://localhost:4000/api/";
 
 
 
+export const getAllAlbumByIdUserRequest = async (idUser,token) => {
+  const response=await fetch(urlbase+"get-all-album/"+idUser, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      "Access-Control-Allow-Origin": "*",
+      "Authorization":`bearer ${token}`
+    },
+  });
+  return await response.json();
+};
+
 export const createAlbumRequest = async (body,token) => {
   const response=await fetch(urlbase+"create-album", {
     method: "POST",
@@ -10,7 +22,7 @@ export const createAlbumRequest = async (body,token) => {
       "Access-Control-Allow-Origin": "*",
       "Authorization":`bearer ${token}`
     },
-    body:{...body}
+    body:JSON.stringify({...body})
   });
   return await response.json();
 };

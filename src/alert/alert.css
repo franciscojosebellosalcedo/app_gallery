@@ -8,18 +8,18 @@
     height: 60px;
     width:220px;
     border-radius: 8px;
-    background-color: rgb(225, 224, 224);
+    background-color: rgba(188, 186, 186, 0.539);
     box-shadow: var(--box-shadow);
     padding: 10px;
     left: -100%;
     transition: all 1s;
 }
 .alert__paragraph{
-    font-size: 14px;
+    font-size: 15px;
 }
 .icon__alert{
     position: absolute;
-    font-size: 25px;
+    font-size: 24px;
     top: 0;
     right: 0;
     color: rgba(0, 0, 255, 0.782);

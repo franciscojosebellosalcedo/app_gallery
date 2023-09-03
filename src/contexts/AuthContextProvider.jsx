@@ -15,6 +15,7 @@ const AuthContextProvider = ({ children }) => {
 
     setIsAuthenticated(true);
   };
+  const getIdUser=()=>user.id;
 
   const getAccessToken = () => accessToken;
 
@@ -32,15 +33,14 @@ const AuthContextProvider = ({ children }) => {
         const refressToken = getRefressToken();
         if (!refressToken) {
           setIsAuthenticated(false);
-        }
-        else {
+        } else {
           const responseRequest = await refressTokenRequest(refressToken);
           if (responseRequest.response === false) {
             setIsAuthenticated(false);
-          }else{
-            const {data}=responseRequest;
+          } else {
+            const { data } = responseRequest;
             setAccesstToken(data.accessToken);
-            setUser({...data.user});
+            setUser({ ...data.user });
             setIsAuthenticated(true);
           }
         }
@@ -49,7 +49,7 @@ const AuthContextProvider = ({ children }) => {
       console.log(error);
     }
   };
-  
+
   useEffect(() => {
     const refressToken = () => {
       checkAuth();
@@ -59,7 +59,7 @@ const AuthContextProvider = ({ children }) => {
 
   return (
     <ContextAuth.Provider
-      value={{ isAuthenticated, saveUser, user, getAccessToken }}
+      value={{ isAuthenticated, saveUser, user, getAccessToken ,getIdUser}}
     >
       {children}
     </ContextAuth.Provider>

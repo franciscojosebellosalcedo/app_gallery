@@ -11,6 +11,7 @@ import AlbumContextProvider from "./contexts/AlbumContextProvider.jsx";
 import ImageContextProvider from "./contexts/ImageContextProvider.jsx";
 import AlertContextProvider from "./contexts/AlertContextProvider.jsx";
 function App() {
+  localStorage.removeItem("nombre")
   const router = createBrowserRouter([
     {
       path: "/",

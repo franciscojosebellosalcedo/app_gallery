@@ -1,12 +1,41 @@
-.album__title{
-    color:var(--color-title) ;
+.album__title {
+  color: var(--color-title);
+  text-align: left !important;
 }
-.btn__create__album{
-    margin-top: 25px;
-    padding: 8px 10px;
-    font-size: 17px;
-    background-color: rgba(0, 0, 255, 0.749);
-    color: white;
-    border-radius:8px ;
-    cursor: pointer;
+
+.btn__create__album {
+  padding: 8px 10px;
+  font-size: 15px;
+  background-color: rgba(0, 0, 255, 0.749);
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.container__buttons__albums {
+  display: flex;
+  margin-top: 20px;
+  gap: 10px;
+}
+.conatiner__options__select {
+  height: max-content;
+}
+
+.btn__option__select {
+  padding: 8px 10px;
+  font-size: 15px;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-left: 10px;
+}
+.button__select__albums {
+  background-color: rgba(0, 0, 255, 0.749);
+}
+.button__select__albums__all {
+    
+  background-color: rgba(166, 161, 161, 0.807);
+}
+.button__cancel__select {
+  background-color: rgba(255, 0, 0, 0.697);
+  color: white;
 }
