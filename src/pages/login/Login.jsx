@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Nav from "../nav/Nav";
-import { loginRequest } from "../../api/api";
+import { loginRequest } from "../../api/apiAuth";
 import { useContextAuth } from "../../contexts/AuthContextProvider";
 import { useNavigate } from "react-router-dom";
 
@@ -25,12 +25,10 @@ const Login = () => {
         setAlert({ type: 0, message: "Debes completar el formulario." });
       } else {
         const responseRequest = await loginRequest(credencials);
-        console.log(responseRequest);
         if (responseRequest.response === false) {
           setAlert({ type: 0, message: responseRequest.message });
         } else {
           const {data}=responseRequest;
-          console.log(data);
           if(!data.accessToken || !data.refressToken || !data.user){
             setAlert({type:0,message:"Se produjo un error al iniciar sesión."});
           }else{

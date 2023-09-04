@@ -1,0 +1,4 @@
+.conatiner__buttons__edit__album{
+    display: flex;
+    justify-content: space-between;    
+}

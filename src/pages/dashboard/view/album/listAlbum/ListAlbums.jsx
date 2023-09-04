@@ -10,10 +10,23 @@ const ListAlbums = () => {
     listOptions,
     setListOptions,
     handlOptionAlbum,
-    handlerSelectAlbum
+    handlerSelectAlbum,
+    setAlbumSelectEdit,
+    getAllAlbumByIdUser,
+    views,
+    setViews,
   } = useContexAlbums();
 
-
+  const openViewEditAlbum = (value) => {
+    setAlbumSelectEdit(value);
+    setViews({
+      ...views,
+      createAlbum: false,
+      editAlbum: true,
+      deleteAlbum: false,
+      listAlbum: false,
+    })
+  };
 
   useEffect(() => {
     setListAlbums([...albums]);
@@ -29,7 +42,11 @@ const ListAlbums = () => {
       });
     });
     setListOptions([...arrayOption]);
-  }, [albums,setListOptions]);
+  }, [albums, setListOptions]);
+
+  useEffect(() => {
+    getAllAlbumByIdUser();
+  },[]);
 
   return (
     <div className="conatiner__albums">
@@ -91,7 +108,11 @@ const ListAlbums = () => {
                           <i class="uil uil-trash icon__option__album"></i>
                           Reciclar
                         </div>
-                        <div className="option__album">
+                        
+                        <div
+                          className="option__album"
+                          onClick={() => openViewEditAlbum()}
+                        >
                           <i class="uil uil-edit icon__option__album"></i>Editar
                         </div>
                       </div>

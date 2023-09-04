@@ -1,15 +1,16 @@
 import React, { useState } from "react";
-import { createAlbumRequest } from "../../../../../api/api";
+import { createAlbumRequest } from "../../../../../api/apiAlbum";
 import { useContexAlbums } from "../../../../../contexts/AlbumContextProvider";
 import { useContextAlert } from "../../../../../contexts/AlertContextProvider";
 import { useContextAuth } from "../../../../../contexts/AuthContextProvider";
 import "./CreateAlbum.css";
 
-const CreateAlbum = (props) => {
+const CreateAlbum = () => {
   const { getAccessToken, getIdUser } = useContextAuth();
-  const {albums,setAlbums}=useContexAlbums();
-  const { alert, setAlert, delayCloseAlert ,closeAlertBeforeLongTime} =
+  const { albums, setAlbums } = useContexAlbums();
+  const { alert, setAlert, delayCloseAlert, closeAlertBeforeLongTime } =
     useContextAlert();
+  const { views, setViews } = useContexAlbums();
   const [newAlbum, setNewAlbum] = useState({
     id_user: getIdUser(),
     name: "",
@@ -53,7 +54,7 @@ const CreateAlbum = (props) => {
           name: "",
           description: "",
         });
-        setAlbums([...albums,responseCreateAlbum.data]);
+        setAlbums([...albums, responseCreateAlbum.data]);
         closeAlertBeforeLongTime();
       }
       delayCloseAlert();
@@ -66,8 +67,8 @@ const CreateAlbum = (props) => {
         <i
           class="uil uil-arrow-left icon__view icon__back"
           onClick={() =>
-            props.setViews({
-              ...props.views,
+            setViews({
+              ...views,
               listAlbum: true,
               createAlbum: false,
             })
@@ -92,12 +93,26 @@ const CreateAlbum = (props) => {
           value={newAlbum.description}
           placeholder="Descripción del álbum"
         />
-        <button
-          className="btn__create__album__register"
-          onClick={(e) => createAlbum(e)}
-        >
-          Crear
-        </button>
+        <div className="conatiner__buttons__edit__album">
+          <button
+            className="btn__create__album__register"
+            onClick={(e) => createAlbum(e)}
+          >
+            Crear
+          </button>
+          <button
+            className="button__cancel__select btn__option__select "
+            onClick={() =>
+              setViews({
+                ...views,
+                listAlbum: true,
+                createAlbum:false
+              })
+            }
+          >
+            Cancelar
+          </button>
+        </div>
       </form>
     </div>
   );

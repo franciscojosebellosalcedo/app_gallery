@@ -16,9 +16,9 @@ const AlertContextProvider = ({ children }) => {
     }
   }
   const closeAlertBeforeLongTime=()=>{
-    setTimeout(()=>{
-      setIsOpen(false);
-    },5000);
+      setTimeout(()=>{
+        setIsOpen(false);
+      },5000);
   }
   return (
     <>

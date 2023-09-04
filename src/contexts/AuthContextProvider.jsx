@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from "react";
 import { createContext, useState } from "react";
-import { refressTokenRequest } from "../api/api";
+import { refressTokenRequest } from "../api/apiAuth";
 
 export const ContextAuth = createContext();
 
@@ -56,6 +56,11 @@ const AuthContextProvider = ({ children }) => {
     };
     refressToken();
   });
+
+  useEffect(() => {
+    
+  }, [user])
+  
 
   return (
     <ContextAuth.Provider

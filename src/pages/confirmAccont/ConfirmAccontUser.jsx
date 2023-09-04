@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from "react-router-dom";
-import { confirmAccotonUserRequest } from '../../api/api';
+import { confirmAccotonUserRequest } from '../../api/apiAuth';
 
 const ConfirmAccontUser = () => {
   const [alert,setAlert]=useState(null);
@@ -9,6 +9,7 @@ const ConfirmAccontUser = () => {
   useEffect(()=>{
     const confirmAccontUser=async ()=>{
       const data=await confirmAccotonUserRequest(params.token);
+      console.log(data);
       if(data.response===false){
         setAlert({type:1,message:data.message});
       }else{

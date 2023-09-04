@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Nav from "../nav/Nav";
-import { createUserRequest } from "../../api/api";
+import { createUserRequest } from "../../api/apiAuth";
 const imageDefault = require("../../assets/imgs/img-default-user.png");
 
 const Register = () => {

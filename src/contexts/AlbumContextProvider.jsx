@@ -1,17 +1,24 @@
 import React, { createContext, useContext, useState } from "react";
 import { useEffect } from "react";
-import { getAllAlbumByIdUserRequest } from "../api/api";
+import { getAllAlbumByIdUserRequest } from "../api/apiAlbum";
 import { useContextAuth } from "./AuthContextProvider";
 
 export const ContextAlbum = createContext();
 
 const AlbumContextProvider = ({ children }) => {
+  const [views, setViews] = useState({
+    createAlbum: false,
+    editAlbum: false,
+    deleteAlbum: false,
+    listAlbum: true,
+  });
   const { getAccessToken, getIdUser } = useContextAuth();
   const [albums, setAlbums] = useState([]);
   const [isOpenSelectAlbums, setIsOpenSelectAlbums] = useState(false);
   const [isSelectedAllAlbums, setIsSelectedAllAlbums] = useState(false);
   const [listOptions, setListOptions] = useState([]);
   const [albumsSelected, setAlbumsSelected] = useState([]);
+  const [albumSelectEdit, setAlbumSelectEdit] = useState(null);
 
   const closeAllOptions = () => {
     const list = listOptions;
@@ -50,20 +57,21 @@ const AlbumContextProvider = ({ children }) => {
     setAlbumsSelected([...listIdAlbums]);
   };
 
+  const getAllAlbumByIdUser = async () => {
+    const responseGetAllAlbumByIdUser = await getAllAlbumByIdUserRequest(
+      getIdUser(),
+      getAccessToken()
+    );
+    if (responseGetAllAlbumByIdUser.response === false) {
+      setAlbums([]);
+    } else {
+      setAlbums([...responseGetAllAlbumByIdUser.data]);
+    }
+  };
+
   useEffect(() => {
-    const getAllAlbumByIdUser = async () => {
-      const responseGetAllAlbumByIdUser = await getAllAlbumByIdUserRequest(
-        getIdUser(),
-        getAccessToken()
-      );
-      if (responseGetAllAlbumByIdUser.response === false) {
-        setAlbums([]);
-      } else {
-        setAlbums([...responseGetAllAlbumByIdUser.data]);
-      }
-    };
     getAllAlbumByIdUser();
-  }, [getAccessToken,getIdUser]);
+  },[]);
   return (
     <>
       <ContextAlbum.Provider
@@ -80,7 +88,11 @@ const AlbumContextProvider = ({ children }) => {
           handlOptionAlbum,
           albumsSelected,
           setAlbumsSelected,
-          handlerSelectAlbum
+          handlerSelectAlbum,
+          views,
+          setViews,
+          albumSelectEdit,
+          setAlbumSelectEdit,getAllAlbumByIdUser
         }}
       >
         {children}

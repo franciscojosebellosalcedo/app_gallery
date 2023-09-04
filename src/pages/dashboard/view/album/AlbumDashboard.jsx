@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import "./AlbumDashboard.css";
 import ListAlbums from "./listAlbum/ListAlbums";
 import CreateAlbum from "./createAlbum/CreateAlbum.jsx";
@@ -7,14 +6,8 @@ import DeleteAlbum from "./deleteAlbum/DeleteAlbum";
 import { useContexAlbums } from "../../../../contexts/AlbumContextProvider";
 
 const AlbumDashboard = () => {
-  const [views, setViews] = useState({
-    createAlbum: false,
-    editAlbum: false,
-    deleteAlbum: false,
-    listAlbum: true,
-  });
   const { albums,isOpenSelectAlbums, setIsOpenSelectAlbums, setIsSelectedAllAlbums,closeAllOptions ,albumsSelected,
-    setAlbumsSelected,} = useContexAlbums();
+    setAlbumsSelected,views, setViews,albumSelectEdit} = useContexAlbums();
 
   const selectAllAlbums=()=>{
     setIsSelectedAllAlbums(true);
@@ -45,7 +38,7 @@ const AlbumDashboard = () => {
     <div className="container__dashboard album">
       <h2 className="album__title">Álbum</h2>
 
-      {views.createAlbum === false ? (
+      {views.createAlbum === true || views.editAlbum === true  ? "" : (
         <>
           <div className="container__buttons__albums">
             {isOpenSelectAlbums===false? <button
@@ -66,7 +59,7 @@ const AlbumDashboard = () => {
               <div className="conatiner__options__select">
 
                 {albumsSelected.length > 0 ? (
-                  <button onClick={()=>selectAllAlbums()} className="button__recicle__albums__all btn__option__select">
+                  <button  className="button__recicle__albums__all btn__option__select">
                     Reciclar
                   </button>
                 ) : (
@@ -97,17 +90,16 @@ const AlbumDashboard = () => {
             }
           </div>
         </>
-      ) : (
-        ""
-      )}
+      ) }
+
       {views.listAlbum === true ? (
         <ListAlbums />
       ) : views.createAlbum === true ? (
-        <CreateAlbum views={views} setViews={setViews} />
-      ) : views.editAlbum === true ? (
-        <EditAlbum views={views} setViews={setViews} />
+        <CreateAlbum />
+      ) : views.editAlbum === true && albumSelectEdit !== null ? (
+        <EditAlbum />
       ) : views.deleteAlbum === true ? (
-        <DeleteAlbum views={views} setViews={setViews} />
+        <DeleteAlbum/>
       ) : (
         ""
       )}
